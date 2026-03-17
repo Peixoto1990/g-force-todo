@@ -2,9 +2,10 @@ import styles from './TaskInput.module.css';
 
 export default function TaskInput({required=true, placeholder="New Task", ref=null, value="", setValue=null, id="", label="Nova tarefa", type="text"}) {
     return (
-        <>
+        <div className={styles.container}>
             <label htmlFor={id}>{label}</label>
-            <input 
+            <input
+                className={styles[`${type}Input`]} 
                 id={id}
                 type={type}
                 required={required}
@@ -15,6 +16,6 @@ export default function TaskInput({required=true, placeholder="New Task", ref=nu
                     setValue(ev.target.value);
                 }}
              />
-        </>
+        </div>
     )
 }

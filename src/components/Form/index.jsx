@@ -28,7 +28,9 @@ export default function Form({taskInputRef=null, taskInputValue="", setInputValu
                 const newTask = createNewTask();
                 resetAllFields();
                 setTaskList([...taskList, newTask]);
-            }}>
+            }}
+                className={styles.form}
+            >
                 <fieldset>
                     <TaskInput
                         ref={taskInputRef}
@@ -56,7 +58,7 @@ export default function Form({taskInputRef=null, taskInputValue="", setInputValu
                 <BtnForm />
                 <BtnForm
                     type='reset'
-                    text='Limpar campo'
+                    text='Limpar campos'
                     resetAllFields={resetAllFields}
                  />
             </form>

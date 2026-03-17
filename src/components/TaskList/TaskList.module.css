@@ -1,0 +1,4 @@
+.list {
+    grid-area: tasklist;
+    padding: 2rem;
+}

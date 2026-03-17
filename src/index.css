@@ -21,6 +21,10 @@ fieldset, button {
   background-color: transparent;
 }
 
+button {
+  cursor: pointer;
+}
+
 ul li {
   list-style: none;
 }

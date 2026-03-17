@@ -1,0 +1,24 @@
+.btnFormContainer {
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+.btnFormContainer:last-of-type {
+    margin-right: 0;
+}
+
+.btnForm {
+    width: 120px;
+    padding: .7rem 0;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: var(--background);
+}
+
+.teste1 {
+    --background: red;
+}
+
+.teste2 {
+    --background: green;
+}
