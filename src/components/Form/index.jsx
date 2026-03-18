@@ -1,9 +1,24 @@
+import { useState } from 'react';
 import { v4 } from 'uuid';
 import BtnForm from '../BtnForm';
 import TaskInput from '../TaskInput';
 import styles from './Form.module.css';
+import TaskError from '../TaskError';
 
 export default function Form({taskInputRef=null, taskInputValue="", setInputValue=null, taskInputEffortValue="", setInputEffortValue=null, taskInputUrgencyValue="", setInputUrgencyValue=null, setTaskList=null, taskList=[]}) {
+    let [isValidTask, setIsValidTask] = useState(true);
+    let validTask = false;
+
+    function validNewTask() {
+        if (+taskInputEffortValue > 0 && +taskInputUrgencyValue > 0) {
+            setIsValidTask(true);
+            validTask = true;
+        } else {
+            setIsValidTask(false);
+            validTask = false;
+        }
+    }
+
     function createNewTask() {
         const newTask = {
             id: v4(),
@@ -23,11 +38,15 @@ export default function Form({taskInputRef=null, taskInputValue="", setInputValu
     }
     return (
         <>
+           {!isValidTask && <TaskError setIsvalidTask={setIsValidTask}/>}
             <form onSubmit={(ev) => {
                 ev.preventDefault();
-                const newTask = createNewTask();
-                resetAllFields();
-                setTaskList([...taskList, newTask]);
+                validNewTask();
+                if (validTask) {
+                    const newTask = createNewTask();
+                    setTaskList([...taskList, newTask]);
+                    resetAllFields();
+                }
             }}
                 className={styles.form}
             >
