@@ -1,26 +1,26 @@
-import styles from './TaskError.module.css';
+import styles from './ErrorModal.module.css';
 import { useRef, useEffect, useState } from 'react';
 
-export default function TaskError({setIsvalidTask=null}) {
-    const refTaskErrorModal = useRef(null);
+export default function ErrorModal({setIsvalidTask=null, message="Erro, tente novamente."}) {
+    const refErrorModal = useRef(null);
     let [clicked, setClicked] = useState(null);
 
     useEffect(() => {
         if (clicked !== null) {
             const timer = setTimeout(function () {
                 setIsvalidTask(true);
-                refTaskErrorModal.current.classList.remove(styles.errorDisplayOff);
+                refErrorModal.current.classList.remove(styles.errorDisplayOff);
             }, 1000);
             return () => clearTimeout(timer);
         }
     }, [clicked])
 
     return (
-        <section ref={refTaskErrorModal} className={styles.taskErrorModal}>
-            <p>Dados inválidos... tente novamente.</p>
+        <section title='ErrorModal' ref={refErrorModal} className={styles.errorModal}>
+            <p>{message}</p>
             <button
                 onClick={() => {
-                    refTaskErrorModal.current.classList.add(styles.errorDisplayOff);
+                    refErrorModal.current.classList.add(styles.errorDisplayOff);
                     setClicked(prev => prev ? false : true);
                 }}
             >

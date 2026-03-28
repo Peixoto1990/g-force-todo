@@ -1,12 +1,9 @@
-import { useState } from 'react';
 import { v4 } from 'uuid';
 import BtnForm from '../BtnForm';
 import TaskInput from '../TaskInput';
 import styles from './Form.module.css';
-import TaskError from '../TaskError';
 
-export default function Form({taskInputRef=null, taskInputValue="", setInputValue=null, taskInputEffortValue="", setInputEffortValue=null, taskInputUrgencyValue="", setInputUrgencyValue=null, setTaskList=null, taskList=[]}) {
-    let [isValidTask, setIsValidTask] = useState(true);
+export default function Form({taskInputRef=null, taskInputValue="", setInputValue=null, taskInputEffortValue="", setInputEffortValue=null, taskInputUrgencyValue="", setInputUrgencyValue=null, setTaskList=null, taskList=[], setIsValidTask=null, setErrorMessage=""}) {
     let validTask = false;
 
     function validNewTask() {
@@ -14,6 +11,7 @@ export default function Form({taskInputRef=null, taskInputValue="", setInputValu
             setIsValidTask(true);
             validTask = true;
         } else {
+            setErrorMessage("Dados de tarefa inválidos.")
             setIsValidTask(false);
             validTask = false;
         }
@@ -38,7 +36,6 @@ export default function Form({taskInputRef=null, taskInputValue="", setInputValu
     }
     return (
         <>
-           {!isValidTask && <TaskError setIsvalidTask={setIsValidTask}/>}
             <form onSubmit={(ev) => {
                 ev.preventDefault();
                 validNewTask();
