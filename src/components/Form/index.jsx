@@ -2,12 +2,15 @@ import { v4 } from 'uuid';
 import BtnForm from '../BtnForm';
 import TaskInput from '../TaskInput';
 import styles from './Form.module.css';
+import { useContext } from 'react';
+import { formContext } from '../../contexts/formContext';
 
-export default function Form({taskInputRef=null, taskInputValue="", setInputValue=null, taskInputEffortValue="", setInputEffortValue=null, taskInputUrgencyValue="", setInputUrgencyValue=null, setTaskList=null, taskList=[], setIsValidTask=null, setErrorMessage=""}) {
+export default function Form({ setTaskList=() => "Criar tarefa", taskList=[], setIsValidTask=() => "É tarefa valida?", setErrorMessage=() => "Nova mensagem de erro", title="Formulário de novas tarefas"}) {
+    const {taskInputRef, userTask, setUserTask, inputEffort, setInputEffort, inputUrgency, setInputUrgency} = useContext(formContext);
     let validTask = false;
 
     function validNewTask() {
-        if (+taskInputEffortValue > 0 && +taskInputUrgencyValue > 0) {
+        if (+inputEffort > 0 && +inputUrgency > 0) {
             setIsValidTask(true);
             validTask = true;
         } else {
@@ -20,18 +23,18 @@ export default function Form({taskInputRef=null, taskInputValue="", setInputValu
     function createNewTask() {
         const newTask = {
             id: v4(),
-            task: taskInputValue,
-            effort: taskInputEffortValue,
-            urgency: taskInputUrgencyValue
+            task: userTask,
+            effort: inputEffort,
+            urgency: inputUrgency
         }   
         
         return newTask;
     }
 
     function resetAllFields() {
-        setInputValue("");
-        setInputEffortValue("");
-        setInputUrgencyValue("");
+        setUserTask("");
+        setInputEffort("");
+        setInputUrgency("");
         taskInputRef.current.focus();
     }
     return (
@@ -46,25 +49,26 @@ export default function Form({taskInputRef=null, taskInputValue="", setInputValu
                 }
             }}
                 className={styles.form}
+                title={title}
             >
                 <fieldset>
                     <TaskInput
                         ref={taskInputRef}
-                        value={taskInputValue}
-                        setValue={setInputValue}
+                        value={userTask}
+                        setValue={setUserTask}
                         id='newTaskInput'
                      />
                     <TaskInput 
-                        value={taskInputEffortValue}
-                        setValue={setInputEffortValue}
+                        value={inputEffort}
+                        setValue={setInputEffort}
                         type='number'
                         id='effortInput'
                         label='Nível de esforço'
                         placeholder='0 - 10'
                     />
                     <TaskInput 
-                        value={taskInputUrgencyValue}
-                        setValue={setInputUrgencyValue}
+                        value={inputUrgency}
+                        setValue={setInputUrgency}
                         type='number'
                         id='urgencyInput'
                         label='Nível de urgência'

@@ -1,7 +1,7 @@
 import styles from './TaskInput.module.css';
 import { validInputData } from '../../utils/validInputData';
 
-export default function TaskInput({required=true, placeholder="New Task", ref=null, value="", setValue=null, id="", label="Nova tarefa", type="text"}) {
+export default function TaskInput({required=true, placeholder="New Task", ref=null, value="", setValue=() => "Mudar valor", id="", label="Nova tarefa", type="text"}) {
     function validData(ev) {
         let data = ev.target.value;
         const newValue = validInputData(data, type);

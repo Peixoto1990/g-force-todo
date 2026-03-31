@@ -54,7 +54,7 @@ export default function TaskCard({task, taskList=[], setTaskList=null, calcGravi
         setTaskList([...taskList].filter((task) => task.id !== id));
     }
     return (
-        <li id={task.id} onClick={() => excludeTask(task.id)}>
+        <li title={`Tarefa: ${task.task}`} id={task.id} onClick={() => excludeTask(task.id)}>
             {task.task}
             {astro && <>
                 <h4 title={astro.name}>{astro.icon}</h4>
