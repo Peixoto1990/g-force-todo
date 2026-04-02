@@ -1,7 +1,7 @@
 import styles from './TaskCard.module.css';
 import solarSystem from '../../constants/solarSystem.js';
 
-export default function TaskCard({task, taskList=[], setTaskList=null, calcGravity=null}) {
+export default function TaskCard({task={task: "tarefaTeste", id: "1", effort: "5", urgency: "5"}, taskList=[], setTaskList=() => "Modifico a lista de tarefas", calcGravity=() => "5"}) {
     const cardGravity = calcGravity(task.effort, task.urgency);
     function getAstro(g) {
         if (g <= 3.50) {

@@ -14,7 +14,7 @@ export default function App() {
   let [showForm, setShowForm] = useState(false);
   
   return (
-    <div className={styles.app}>
+    <div title='gForce WebApp' className={styles.app}>
       {!isValidTask && <ErrorModal setIsvalidTask={setIsValidTask} message={errorMessage}/>}
       <div className={styles.container}>
         <Dashboard showForm={showForm} setShowForm={setShowForm}/>
