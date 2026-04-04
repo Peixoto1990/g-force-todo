@@ -10,7 +10,7 @@ export default function Form({ setTaskList=() => "Criar tarefa", taskList=[], se
     let validTask = false;
 
     function validNewTask() {
-        if (+inputEffort > 0 && +inputUrgency > 0) {
+        if (+inputEffort > 0 && +inputUrgency > 0 && userTask.match(/\w/)) {
             setIsValidTask(true);
             validTask = true;
         } else {

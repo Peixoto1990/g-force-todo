@@ -8,8 +8,8 @@ export default function ErrorModal({setIsvalidTask=null, message="Erro, tente no
     useEffect(() => {
         if (clicked !== null) {
             const timer = setTimeout(function () {
-                setIsvalidTask(true);
                 refErrorModal.current.classList.remove(styles.errorDisplayOff);
+                setIsvalidTask(true);
             }, 1000);
             return () => clearTimeout(timer);
         }
