@@ -1,5 +1,5 @@
 import styles from './App.module.css';
-import { FormProvider } from './contexts/formContext';
+import FormProvider from './contexts/FormProvider';
 import { useState } from 'react';
 import Form from './components/Form';
 import { useLocalStorage } from './hooks/useLocalStorage/useLocalStorage';
@@ -9,9 +9,9 @@ import ErrorModal from './components/ErrorModal';
 
 export default function App() {
   const [taskList, setTaskList] = useLocalStorage("gForceTodo", []); 
-  let [isValidTask, setIsValidTask] = useState(true);
-  let [errorMessage, setErrorMessage] = useState("");
-  let [showForm, setShowForm] = useState(false);
+  const [isValidTask, setIsValidTask] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [showForm, setShowForm] = useState(false);
   
   return (
     <div title='gForce WebApp' className={styles.app}>

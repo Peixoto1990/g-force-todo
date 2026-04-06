@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
-import { FormProvider } from "../../contexts/formContext";
+import FormProvider from "../../contexts/FormProvider";
 import Form from ".";
 
 describe('Componente Form.jsx', () => {

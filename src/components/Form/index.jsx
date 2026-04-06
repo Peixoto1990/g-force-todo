@@ -3,20 +3,19 @@ import BtnForm from '../BtnForm';
 import TaskInput from '../TaskInput';
 import styles from './Form.module.css';
 import { useContext } from 'react';
-import { formContext } from '../../contexts/formContext';
+import { FormContext } from '../../contexts/formContext';
 
 export default function Form({ setTaskList=() => "Criar tarefa", taskList=[], setIsValidTask=() => "É tarefa valida?", setErrorMessage=() => "Nova mensagem de erro", title="Formulário de novas tarefas"}) {
-    const {taskInputRef, userTask, setUserTask, inputEffort, setInputEffort, inputUrgency, setInputUrgency} = useContext(formContext);
-    let validTask = false;
+    const {taskInputRef, userTask, setUserTask, inputEffort, setInputEffort, inputUrgency, setInputUrgency} = useContext(FormContext);
 
     function validNewTask() {
         if (+inputEffort > 0 && +inputUrgency > 0 && userTask.match(/\w/)) {
             setIsValidTask(true);
-            validTask = true;
+            return true;
         } else {
             setErrorMessage("Dados de tarefa inválidos.")
             setIsValidTask(false);
-            validTask = false;
+            return false;
         }
     }
 
@@ -41,7 +40,7 @@ export default function Form({ setTaskList=() => "Criar tarefa", taskList=[], se
         <>
             <form onSubmit={(ev) => {
                 ev.preventDefault();
-                validNewTask();
+                const validTask = validNewTask();
                 if (validTask) {
                     const newTask = createNewTask();
                     setTaskList([...taskList, newTask]);

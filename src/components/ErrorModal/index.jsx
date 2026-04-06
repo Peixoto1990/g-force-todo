@@ -13,7 +13,7 @@ export default function ErrorModal({setIsvalidTask=null, message="Erro, tente no
             }, 1000);
             return () => clearTimeout(timer);
         }
-    }, [clicked])
+    }, [clicked, setIsvalidTask])
 
     return (
         <section title='ErrorModal' ref={refErrorModal} className={styles.errorModal}>
