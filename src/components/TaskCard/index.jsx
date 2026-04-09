@@ -1,4 +1,4 @@
-//import styles from './TaskCard.module.css';
+import styles from './TaskCard.module.css';
 import solarSystem from '../../constants/solarSystem.js';
 
 export default function TaskCard({task={task: "tarefaTeste", id: "1", effort: "5", urgency: "5"}, taskList=[], setTaskList=() => "Modifico a lista de tarefas", calcGravity=() => "5"}) {
@@ -54,7 +54,7 @@ export default function TaskCard({task={task: "tarefaTeste", id: "1", effort: "5
         setTaskList([...taskList].filter((task) => task.id !== id));
     }
     return (
-        <li title={`Tarefa: ${task.task}`} id={task.id} onClick={() => excludeTask(task.id)}>
+        <li className={styles.card} title={`Tarefa: ${task.task}`} id={task.id} onClick={() => excludeTask(task.id)}>
             {task.task}
             {astro && <>
                 <h4 title={astro.name}>{astro.icon}</h4>

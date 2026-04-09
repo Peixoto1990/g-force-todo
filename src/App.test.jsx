@@ -1,18 +1,23 @@
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import App from "./App";
+import ThemeProvider from "./contexts/ThemeProvider";
 
 describe('Integração da aplicação g-force-todo WebApp - Componente principal - App.jsx - Fluxo do usuário', () => {
     it('Deve renderizar o componente', () => {
         render(
-            <App />
+            <ThemeProvider>
+                <App />
+            </ThemeProvider>
         );
         expect(screen.getByTitle(/gForce WebApp/i)).toBeInTheDocument();
     });
 
     it('Deve iniciar sem o Form e após interação do usuário, renderizar o mesmo', () => {
         render(
-            <App />
+            <ThemeProvider>
+                <App />
+            </ThemeProvider>
         );
         expect(screen.queryByTitle(/formulário de novas tarefas/i)).not.toBeInTheDocument();
         const botaoDoComponenteDashboard = screen.queryByTitle('botão exibir/ocultar formulário');
@@ -22,7 +27,9 @@ describe('Integração da aplicação g-force-todo WebApp - Componente principal
 
     it('Deve criar tarefa, atualizar o localStorage, exibir o item de lista com a tarefa criada, exibir o astro correspondente a gravidade calculada, excluir o item de lista após interação do usuário e limpar o localStorage', () => {
         render(
-            <App />
+            <ThemeProvider>
+                <App />
+            </ThemeProvider>
         );
         const botaoDoComponenteDashboard = screen.queryByTitle('botão exibir/ocultar formulário');
         fireEvent.click(botaoDoComponenteDashboard);
@@ -50,19 +57,33 @@ describe('Integração da aplicação g-force-todo WebApp - Componente principal
         expect(JSON.parse(localStorage.getItem("gForceTodo"))).toStrictEqual([]);
     });
 
-    it('Deve iniciar com uma lista de 1 item', () => {
+    it('Deve iniciar com uma lista de 2 itens e excluir 1 deles após interação do usuário', () => {
         localStorage.clear();
         localStorage.setItem('gForceTodo', JSON.stringify([{
             id: "teste-task1",
             task: "Fazer a cama",
             effort: "3",
             urgency: "5"
+        }, {
+            id: "teste-task2",
+            task: "Lavar os pratos",
+            effort: "4",
+            urgency: "6"
         }]));
         render(
-            <App />
+            <ThemeProvider>
+                <App />
+            </ThemeProvider>
         );
 
         expect(screen.getByText(/fazer a cama/i)).toBeInTheDocument();
+        expect(screen.getByText(/lavar os pratos/i)).toBeInTheDocument();
+        expect(screen.getByTitle(/lista de tarefas/i).querySelectorAll('li')).toHaveLength(2);
+
+        fireEvent.click(screen.getByText(/fazer a cama/i));
+        expect(screen.queryByText(/fazer a cama/i)).not.toBeInTheDocument();
+        expect(screen.getByText(/lavar os pratos/i)).toBeInTheDocument();
+        expect(screen.getByTitle(/lista de tarefas/i).querySelectorAll('li')).toHaveLength(1);
     });
 });
 
@@ -71,7 +92,9 @@ describe('Integração da aplicação g-force-todo WebApp - Componente principal
         localStorage.clear();
         vi.useFakeTimers();
         render(
-            <App />
+            <ThemeProvider>
+                <App />
+            </ThemeProvider>
         );
         const botaoDoComponenteDashboard = screen.queryByTitle('botão exibir/ocultar formulário');
         fireEvent.click(botaoDoComponenteDashboard);

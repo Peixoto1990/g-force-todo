@@ -1,4 +1,7 @@
 .list {
     grid-area: tasklist;
-    padding: 2rem;
+    padding: var(--spacing-std);
+    gap: var(--spacing-std);
+    display: flex;
+    flex-flow: column nowrap;
 }
