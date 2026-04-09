@@ -7,7 +7,7 @@ describe('Componente TaskCard.jsx', () => {
         render(
             <TaskCard />
         );
-        const elementoLi = screen.getByText(/tarefateste/i);
+        const elementoLi = screen.getByTitle(/tarefa: tarefateste/i);
         expect(elementoLi).toBeInTheDocument();
         expect(elementoLi.querySelector('h4')).toHaveAttribute('title', 'Europa');
     });
@@ -17,7 +17,7 @@ describe('Componente TaskCard.jsx', () => {
         render(
             <TaskCard setTaskList={excludeTaskMock}/>
         );
-        const elementoLi = screen.getByText(/tarefateste/i);
+        const elementoLi = screen.getByTitle(/tarefa: tarefateste/i).querySelector('[title="Excluir tarefa"]');
         fireEvent.click(elementoLi);
         expect(excludeTaskMock).toHaveBeenCalled();
     });

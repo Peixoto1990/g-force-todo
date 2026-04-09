@@ -16,6 +16,9 @@
   --radius-tech: 4px;
   --spacing-std: 16px;
   --transition-warp: 0.3s ease;
+  --action-delete: var(--palette-red);
+  --g-mid: var(--palette-amber);
+  --g-high: var(--palette-red);
 }
 
 .space {
@@ -25,6 +28,7 @@
   --accent: var(--palette-cyan);
   --glow: 0 0 5px var(--palette-cyan);
   --border: 1px solid var(--palette-cyan);
+  --g-low: var(--palette-cyan);
 }
 
 .light {
@@ -34,6 +38,7 @@
   --accent: var(--palette-navy);
   --glow: none; /* Luz do dia não precisa de neon */
   --border: 1px solid #D1D1D1;
+  --g-low: var(--palette-navy);
 }
 
 * {

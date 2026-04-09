@@ -49,10 +49,10 @@ describe('Integração da aplicação g-force-todo WebApp - Componente principal
         }]);
         const componenteTaskList = screen.getByTitle(/lista de tarefas/i);
         expect(componenteTaskList.querySelectorAll('li')).toHaveLength(1);
-        const componenteTaskCard = screen.getByText(/lavar os pratos/i);
+        const componenteTaskCard = screen.getByTitle(/tarefa: lavar os pratos/i);
         expect(componenteTaskCard).toBeInTheDocument();
         expect(componenteTaskCard.querySelector('h4')).toHaveAttribute('title', 'Terra');
-        fireEvent.click(componenteTaskCard);
+        fireEvent.click(componenteTaskCard.querySelector('[title="Excluir tarefa"]'));
         expect(componenteTaskCard).not.toBeInTheDocument();
         expect(JSON.parse(localStorage.getItem("gForceTodo"))).toStrictEqual([]);
     });
@@ -80,7 +80,7 @@ describe('Integração da aplicação g-force-todo WebApp - Componente principal
         expect(screen.getByText(/lavar os pratos/i)).toBeInTheDocument();
         expect(screen.getByTitle(/lista de tarefas/i).querySelectorAll('li')).toHaveLength(2);
 
-        fireEvent.click(screen.getByText(/fazer a cama/i));
+        fireEvent.click(screen.getByTitle(/tarefa: fazer a cama/i).querySelector('[title="Excluir tarefa"]'));
         expect(screen.queryByText(/fazer a cama/i)).not.toBeInTheDocument();
         expect(screen.getByText(/lavar os pratos/i)).toBeInTheDocument();
         expect(screen.getByTitle(/lista de tarefas/i).querySelectorAll('li')).toHaveLength(1);
