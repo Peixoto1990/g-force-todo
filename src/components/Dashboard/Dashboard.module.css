@@ -3,21 +3,46 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.2);
     padding: var(--spacing-std);
     background-color: var(--bg-card);
+    color: var(--text-main);
 }
 
 .logo {
     font-size: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+.logoContainer {
+    filter: drop-shadow(0px 0px 5px var(--accent));
+}
+
+.logo span {
+    font-weight: bold;
+}
+
+.logo h2 {
+    font-weight: 100;
+    font-size: 1.5rem;
 }
 
 .buttonNewTask {
-    border: 1px solid black;
-    padding: .5rem 0;
-    width: 70px;
+    border: none;
+    padding: .5rem 1rem;
+    width: max-content;
     border-radius: 5px;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
+    margin-left: auto;
+    color: var(--accent);
+    filter: drop-shadow(0px 0px 5px var(--accent));
+    display: grid;
+    place-items: center;
+}
+
+.buttonNewTask::before {
+    content: "+";
 }
 
 .cornerButtonsContainer {
@@ -27,5 +52,28 @@
 }
 
 .cornerButtons {
-    font-size: 1.2rem;
+    color: inherit;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.cornerButtons:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0px 0px 8px var(--accent));
+}
+
+@media screen and (min-width: 768px) {
+    .buttonNewTask {
+        border: 1px solid var(--accent);
+        margin-left: 0;
+    }
+
+    .buttonNewTask::before {
+        content: "Add tarefa";
+        font-size: 1rem;
+    }
 }

@@ -4,7 +4,7 @@ import Dashboard from ".";
 import ThemeProvider from '../../contexts/ThemeProvider';
 
 describe('Componente Dashboard.jsx', () => {
-    it('Deve renderizar o componente com o texto do botão igual a +', () => {
+    it('Deve renderizar o componente', () => {
         render(
             <ThemeProvider>
                 <Dashboard />
@@ -12,7 +12,6 @@ describe('Componente Dashboard.jsx', () => {
         );
         const elementoDashboard = screen.getByTitle(/painel de controle/i)
         expect(elementoDashboard).toBeInTheDocument();
-        expect(screen.getByTitle("botão exibir/ocultar formulário")).toHaveTextContent("+");
     });
 
     it('Deve chamar a função de controle de exibição do Form --- setShowForm', () => {
