@@ -24,7 +24,8 @@ export default function Form({ setTaskList=() => "Criar tarefa", taskList=[], se
             id: v4(),
             task: userTask,
             effort: inputEffort,
-            urgency: inputUrgency
+            urgency: inputUrgency,
+            done: false
         }   
         
         return newTask;

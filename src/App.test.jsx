@@ -45,7 +45,8 @@ describe('Integração da aplicação g-force-todo WebApp - Componente principal
             id: expect.stringContaining("-"),
             task: "Lavar os pratos",
             effort: "4",
-            urgency: "5"
+            urgency: "5",
+            done: false
         }]);
         const componenteTaskList = screen.getByTitle(/lista de tarefas/i);
         expect(componenteTaskList.querySelectorAll('li')).toHaveLength(1);
@@ -63,12 +64,14 @@ describe('Integração da aplicação g-force-todo WebApp - Componente principal
             id: "teste-task1",
             task: "Fazer a cama",
             effort: "3",
-            urgency: "5"
+            urgency: "5",
+            done: false
         }, {
             id: "teste-task2",
             task: "Lavar os pratos",
             effort: "4",
-            urgency: "6"
+            urgency: "6",
+            done: false
         }]));
         render(
             <ThemeProvider>

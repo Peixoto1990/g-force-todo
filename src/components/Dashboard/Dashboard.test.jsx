@@ -24,4 +24,4 @@ describe('Componente Dashboard.jsx', () => {
         fireEvent.click(screen.getByTitle("botão exibir/ocultar formulário"));
         expect(setShowFormMock).toHaveBeenCalled();
     });
-})
+});

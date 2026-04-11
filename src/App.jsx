@@ -7,6 +7,8 @@ import TaskList from './components/TaskList';
 import Dashboard from './components/Dashboard';
 import ErrorModal from './components/ErrorModal';
 import { ThemeContext } from './contexts/ThemeContext';
+import Filter from './components/Filter';
+import FilterProvider from './contexts/FilterProvider';
 
 export default function App() {
   const [taskList, setTaskList] = useLocalStorage("gForceTodo", []); 
@@ -29,11 +31,11 @@ export default function App() {
               setTaskList={setTaskList}
              />
           </FormProvider>}
-           {taskList.length > 0 &&
+           {taskList.length > 0 && <FilterProvider> <Filter />
             <TaskList
               taskList={taskList}
               setTaskList={setTaskList}
-            />
+            /> </FilterProvider>
            }
         </div>
       </div>

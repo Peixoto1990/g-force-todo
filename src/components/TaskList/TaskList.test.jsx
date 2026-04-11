@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
+import FilterProvider from "../../contexts/FilterProvider";
 import TaskList from ".";
 
 describe('Componente TaskList.jsx', () => {
@@ -11,7 +12,9 @@ describe('Componente TaskList.jsx', () => {
             urgency: "5"
         }
         render(
-            <TaskList taskList={[{...task}]}/>
+            <FilterProvider>
+                <TaskList taskList={[{...task}]}/>
+            </FilterProvider>
         );
 
         const elementoLista = screen.getByTitle(/lista de tarefas/i);
@@ -24,7 +27,9 @@ describe('Componente TaskList.jsx', () => {
 
     it('Deve exibir uma lista vazia', () => {
         render(
-            <TaskList />
+            <FilterProvider>
+                <TaskList />
+            </FilterProvider>
         );
 
         const elementoLista = screen.getByTitle(/lista de tarefas/i);
