@@ -38,7 +38,7 @@ export default function Form({ setTaskList=() => "Criar tarefa", taskList=[], se
         taskInputRef.current.focus();
     }
     return (
-        <>
+        <div className={styles.container}>
             <form onSubmit={(ev) => {
                 ev.preventDefault();
                 const validTask = validNewTask();
@@ -82,6 +82,6 @@ export default function Form({ setTaskList=() => "Criar tarefa", taskList=[], se
                     resetAllFields={resetAllFields}
                  />
             </form>
-        </>
+        </div>
     )
 }

@@ -9,7 +9,8 @@ describe('Componente TaskList.jsx', () => {
             id: "2",
             task: "Lavar o banheiro",
             effort: "5",
-            urgency: "5"
+            urgency: "5",
+            done: false
         }
         render(
             <FilterProvider>
@@ -22,7 +23,7 @@ describe('Componente TaskList.jsx', () => {
         expect(elementoLista).toBeInTheDocument();
         expect(elementoLista.querySelectorAll('li')).toHaveLength(1);
         expect(elementoTarefa).toBeInTheDocument();
-        expect(elementoTarefa.querySelector('h4')).toHaveAttribute('title', 'Terra');
+        expect(elementoTarefa.querySelector('h4')).toHaveAttribute('title', 'Urano');
     });
 
     it('Deve exibir uma lista vazia', () => {

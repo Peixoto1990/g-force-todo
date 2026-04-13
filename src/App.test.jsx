@@ -52,7 +52,7 @@ describe('Integração da aplicação g-force-todo WebApp - Componente principal
         expect(componenteTaskList.querySelectorAll('li')).toHaveLength(1);
         const componenteTaskCard = screen.getByTitle(/tarefa: lavar os pratos/i);
         expect(componenteTaskCard).toBeInTheDocument();
-        expect(componenteTaskCard.querySelector('h4')).toHaveAttribute('title', 'Terra');
+        expect(componenteTaskCard.querySelector('h4')).toHaveAttribute('title', 'Urano');
         fireEvent.click(componenteTaskCard.querySelector('[title="Excluir tarefa"]'));
         expect(componenteTaskCard).not.toBeInTheDocument();
         expect(JSON.parse(localStorage.getItem("gForceTodo"))).toStrictEqual([]);
