@@ -1,14 +1,14 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import Dashboard from ".";
-import ThemeProvider from '../../contexts/ThemeProvider';
+import MetaProvider from '../../contexts/MetaProvider';
 
 describe('Componente Dashboard.jsx', () => {
     it('Deve renderizar o componente', () => {
         render(
-            <ThemeProvider>
+            <MetaProvider>
                 <Dashboard />
-            </ThemeProvider>
+            </MetaProvider>
         );
         const elementoDashboard = screen.getByTitle(/painel de controle/i)
         expect(elementoDashboard).toBeInTheDocument();
@@ -17,9 +17,9 @@ describe('Componente Dashboard.jsx', () => {
     it('Deve chamar a função de controle de exibição do Form --- setShowForm', () => {
         const setShowFormMock = vi.fn();
         render(
-            <ThemeProvider>
+            <MetaProvider>
                 <Dashboard setShowForm={setShowFormMock}/>
-            </ThemeProvider>
+            </MetaProvider>
         );
         fireEvent.click(screen.getByTitle("botão exibir/ocultar formulário"));
         expect(setShowFormMock).toHaveBeenCalled();

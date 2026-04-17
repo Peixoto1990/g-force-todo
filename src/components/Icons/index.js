@@ -7,6 +7,7 @@ import Filter from "./Filter";
 import GFilter from "./GFilter";
 import UrgencyFilter from "./UrgencyFilter";
 import PendingFilter from "./PendingFilter";
+import DoneFilter from "./DoneFilter";
 
 export {
     RocketIcon,
@@ -17,5 +18,6 @@ export {
     Filter,
     GFilter,
     UrgencyFilter,
-    PendingFilter
+    PendingFilter,
+    DoneFilter
 };

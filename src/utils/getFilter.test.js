@@ -27,7 +27,7 @@ const taskListTest = [
 
 describe('Função utilitária getFilter', () => {
     it('Deve retornar um array ordenado pelo nível da força G', () => {
-        expect(getFilter("gforce", taskListTest)).toStrictEqual(
+        expect(getFilter("gforce", true, taskListTest)).toStrictEqual(
             [
                 {
                     id: "2",
@@ -55,7 +55,7 @@ describe('Função utilitária getFilter', () => {
     });
 
     it('Deve retornar um array com filtro aplicado de tarefas mais urgentes primeiro', () => {
-        expect(getFilter("urgency", taskListTest)).toStrictEqual(
+        expect(getFilter("urgency", true, taskListTest)).toStrictEqual(
             [
                 {
                     id: "3",
@@ -82,23 +82,16 @@ describe('Função utilitária getFilter', () => {
         )
     });
 
-    it('Deve retornar um array apenas com as tarefas pendentes, considerando o nível da força G', () => {
-        expect(getFilter("pending", taskListTest)).toStrictEqual(
+    it('Deve retornar um array apenas com as tarefas concluídas, considerando o nível da força G', () => {
+        expect(getFilter("done", true, taskListTest)).toStrictEqual(
             [
                 {
-                    id: "2",
-                    task: "correr",
-                    effort: "7",
+                    id: "1",
+                    task: "varrer",
+                    effort: "4",
                     urgency: "6",
-                    done: false
-                },
-                {
-                    id: "3",
-                    task: "Fazer almoço",
-                    effort: "5",
-                    urgency: "8",
-                    done: false
-                },
+                    done: true
+                }
             ]
         )
     });

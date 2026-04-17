@@ -6,20 +6,19 @@ import { useLocalStorage } from './hooks/useLocalStorage/useLocalStorage';
 import TaskList from './components/TaskList';
 import Dashboard from './components/Dashboard';
 import ErrorModal from './components/ErrorModal';
-import { ThemeContext } from './contexts/ThemeContext';
 import Filter from './components/Filter';
-import FilterProvider from './contexts/FilterProvider';
+import { MetaContext } from './contexts/MetaContext';
 
 export default function App() {
   const [taskList, setTaskList] = useLocalStorage("gForceTodo", []); 
   const [isValidTask, setIsValidTask] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
   const [showForm, setShowForm] = useState(false);
-  const { theme } = useContext(ThemeContext);
+  const { metaData } = useContext(MetaContext);
   
   return (
-    <div className={theme} style={{minHeight: "100vh", backgroundColor: "var(--bg-page)"}}>
-      <div title='gForce WebApp' data-theme={theme} className={styles.container}>
+    <div className={metaData.theme} style={{minHeight: "100vh", backgroundColor: "var(--bg-page)"}}>
+      <div title='gForce WebApp' data-theme={metaData.theme} className={styles.container}>
         {!isValidTask && <ErrorModal setIsvalidTask={setIsValidTask} message={errorMessage}/>}
         <div className={styles.container}>
           <Dashboard showForm={showForm} setShowForm={setShowForm}/>
@@ -31,11 +30,11 @@ export default function App() {
               setTaskList={setTaskList}
              />
           </FormProvider>}
-           {taskList.length > 0 && <FilterProvider> <Filter />
+           {taskList.length > 0 && <><Filter />
             <TaskList
               taskList={taskList}
               setTaskList={setTaskList}
-            /> </FilterProvider>
+            /> </>
            }
         </div>
       </div>

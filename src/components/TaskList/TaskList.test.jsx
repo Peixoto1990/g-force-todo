@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
-import FilterProvider from "../../contexts/FilterProvider";
+import MetaProvider from '../../contexts/MetaProvider';
 import TaskList from ".";
 
 describe('Componente TaskList.jsx', () => {
@@ -13,9 +13,9 @@ describe('Componente TaskList.jsx', () => {
             done: false
         }
         render(
-            <FilterProvider>
+            <MetaProvider>
                 <TaskList taskList={[{...task}]}/>
-            </FilterProvider>
+            </MetaProvider>
         );
 
         const elementoLista = screen.getByTitle(/lista de tarefas/i);
@@ -28,9 +28,9 @@ describe('Componente TaskList.jsx', () => {
 
     it('Deve exibir uma lista vazia', () => {
         render(
-            <FilterProvider>
+            <MetaProvider>
                 <TaskList />
-            </FilterProvider>
+            </MetaProvider>
         );
 
         const elementoLista = screen.getByTitle(/lista de tarefas/i);

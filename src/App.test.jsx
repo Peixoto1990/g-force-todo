@@ -1,23 +1,23 @@
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import App from "./App";
-import ThemeProvider from "./contexts/ThemeProvider";
+import MetaProvider from './contexts/MetaProvider';
 
 describe('Integração da aplicação g-force-todo WebApp - Componente principal - App.jsx - Fluxo do usuário', () => {
     it('Deve renderizar o componente', () => {
         render(
-            <ThemeProvider>
+            <MetaProvider>
                 <App />
-            </ThemeProvider>
+            </MetaProvider>
         );
         expect(screen.getByTitle(/gForce WebApp/i)).toBeInTheDocument();
     });
 
     it('Deve iniciar sem o Form e após interação do usuário, renderizar o mesmo', () => {
         render(
-            <ThemeProvider>
+            <MetaProvider>
                 <App />
-            </ThemeProvider>
+            </MetaProvider>
         );
         expect(screen.queryByTitle(/formulário de novas tarefas/i)).not.toBeInTheDocument();
         const botaoDoComponenteDashboard = screen.queryByTitle('botão exibir/ocultar formulário');
@@ -27,9 +27,9 @@ describe('Integração da aplicação g-force-todo WebApp - Componente principal
 
     it('Deve criar tarefa, atualizar o localStorage, exibir o item de lista com a tarefa criada, exibir o astro correspondente a gravidade calculada, excluir o item de lista após interação do usuário e limpar o localStorage', () => {
         render(
-            <ThemeProvider>
+            <MetaProvider>
                 <App />
-            </ThemeProvider>
+            </MetaProvider>
         );
         const botaoDoComponenteDashboard = screen.queryByTitle('botão exibir/ocultar formulário');
         fireEvent.click(botaoDoComponenteDashboard);
@@ -74,9 +74,9 @@ describe('Integração da aplicação g-force-todo WebApp - Componente principal
             done: false
         }]));
         render(
-            <ThemeProvider>
+            <MetaProvider>
                 <App />
-            </ThemeProvider>
+            </MetaProvider>
         );
 
         expect(screen.getByText(/fazer a cama/i)).toBeInTheDocument();
@@ -95,9 +95,9 @@ describe('Integração da aplicação g-force-todo WebApp - Componente principal
         localStorage.clear();
         vi.useFakeTimers();
         render(
-            <ThemeProvider>
+            <MetaProvider>
                 <App />
-            </ThemeProvider>
+            </MetaProvider>
         );
         const botaoDoComponenteDashboard = screen.queryByTitle('botão exibir/ocultar formulário');
         fireEvent.click(botaoDoComponenteDashboard);

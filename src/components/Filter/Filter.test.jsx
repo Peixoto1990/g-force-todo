@@ -1,24 +1,24 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
-import { FilterContext } from "../../contexts/FilterContext";
-import FilterProvider from '../../contexts/FilterProvider';
+import { MetaContext } from "../../contexts/MetaContext";
+import MetaProvider from '../../contexts/MetaProvider';
 import Filter from ".";
 
 describe('Componente Filter.jsx', () => {
     it('Deve renderizar o componente', () => {
         render(
-            <FilterProvider>
+            <MetaProvider>
                 <Filter />
-            </FilterProvider>
+            </MetaProvider>
         );
         expect(screen.getByTitle(/ações de filtro/i)).toBeInTheDocument();
     });
 
     it('Deve conter os botões de filtragem', () => {
         render(
-            <FilterProvider>
+            <MetaProvider>
                 <Filter />
-            </FilterProvider>
+            </MetaProvider>
         );
         const botoesFiltro = screen.getAllByRole('button', { name: /filtro por \w+/i });
         botoesFiltro.forEach((botao) => {
@@ -27,16 +27,16 @@ describe('Componente Filter.jsx', () => {
     });
 
     it('Deve executar a filtragem', () => {
-        const setFilterMock = vi.fn();
+        const setMetaDataMock = vi.fn();
         render(
-            <FilterContext.Provider value={{setFilter: setFilterMock}}>
+            <MetaContext.Provider value={{metaData: {lastFilter: "gforce"}, setMetaData: setMetaDataMock}}>
                 <Filter />
-            </FilterContext.Provider>
+            </MetaContext.Provider>
         );
         const botoesFiltro = screen.getAllByRole('button', { name: /filtro por \w+/i });
         botoesFiltro.forEach((botao, index) => {
             fireEvent.click(botao);
-            expect(setFilterMock).toHaveBeenCalledTimes(index + 1);
+            expect(setMetaDataMock).toHaveBeenCalledTimes(index + 1);
         });
     });
 });

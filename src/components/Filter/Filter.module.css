@@ -38,3 +38,7 @@
     flex-basis: 25%;
     color: inherit;
 }
+
+.filterInactive {
+    filter: invert();
+}
