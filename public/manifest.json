@@ -1,0 +1,24 @@
+{
+  "short_name": "gForce",
+  "name": "gForce: Task Control System",
+  "description": "Sistema de gerenciamento de diretrizes espaciais.",
+  "icons": [
+    {
+      "src": "favicon.svg", 
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#121212",
+  "background_color": "#121212",
+  "orientation": "portrait"
+}
